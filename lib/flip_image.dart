@@ -45,7 +45,7 @@ class _MyFlipImageState extends State<MyFlipImage>
     currentImagePath = widget.assetPath;
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 5000),
+      duration: Duration(milliseconds: 2000),
     )
       ..addListener(updateRotation)
       ..addStatusListener((status) {
