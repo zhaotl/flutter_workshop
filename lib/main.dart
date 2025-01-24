@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workshop/flip_image.dart';
 import 'package:flutter_workshop/flipping_switch.dart';
+import 'package:flutter_workshop/ticker_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,14 +34,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  int _counter = 0;
   late TabController _tabController;
   String _assetPath = 'images/cats1.png';
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _gotoNextPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text('Ticker Chart'),
+          ),
+          body: TickerChart(),
+        ),
+      ),
+    );
   }
 
   void changeAssetPath(bool isLeftActive) {
@@ -91,20 +99,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 child: MyFlipImage(assetPath: _assetPath),
               ),
               SizedBox(
-                height: 16,
-              ),
-              const Text(
-                'You have pushed the button this many times:',
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(color: Colors.white),
-              ),
-              SizedBox(
                 height: 48,
               ),
             ],
@@ -112,9 +106,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: _gotoNextPage,
+        tooltip: 'goto Next',
+        child: const Icon(Icons.arrow_forward_outlined),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
