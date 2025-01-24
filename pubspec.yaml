@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_isolate: ^2.1.0
   flex_color_scheme: ^8.1.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
