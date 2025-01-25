@@ -14,6 +14,20 @@ class Ticker {
   });
 }
 
+class TickerPage extends StatelessWidget {
+  const TickerPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Ticker Chart'),
+      ),
+      body: TickerChart(),
+    );
+  }
+}
+
 class TickerChart extends StatelessWidget {
   const TickerChart({super.key});
 

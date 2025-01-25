@@ -25,6 +25,7 @@ dependencies:
   flutter_isolate: ^2.1.0
   flex_color_scheme: ^8.1.0
   get: ^4.6.6
+  material_color_utilities: ^0.11.1
 
 dev_dependencies:
   flutter_test:

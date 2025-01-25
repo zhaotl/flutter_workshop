@@ -45,7 +45,7 @@ class _MyFlipImageState extends State<MyFlipImage>
     currentImagePath = widget.assetPath;
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2000),
+      duration: Duration(milliseconds: 5000),
     )
       ..addListener(updateRotation)
       ..addStatusListener((status) {
@@ -111,20 +111,19 @@ class _MyFlipImageState extends State<MyFlipImage>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 48.0),
-      child: Center(
-        child: Transform(
-          transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.001)
-            ..rotateX(_rotation),
-          alignment: FractionalOffset.center,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: IntrinsicHeight(
-              child: Image.asset(
-                currentImagePath,
-              ),
+    return Container(
+      alignment: Alignment.topCenter,
+      padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 16),
+      child: Transform(
+        transform: Matrix4.identity()
+          ..setEntry(3, 2, 0.001)
+          ..rotateX(_rotation),
+        alignment: FractionalOffset.center,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: IntrinsicHeight(
+            child: Image.asset(
+              currentImagePath,
             ),
           ),
         ),
