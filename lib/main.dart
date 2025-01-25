@@ -49,14 +49,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late TabController _tabController;
   String _assetPath = 'images/cats1.png';
+  int _selectIndex = 0;
+
+  void _onItemSelected(int index) {
+    setState(() {
+      _selectIndex = index;
+    });
+  }
 
   void _gotoNextPage() {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => TickerPage(),
-    //   ),
-    // );
     Get.toNamed('/ticker');
   }
 
@@ -135,11 +136,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               ),
             ),
             SizedBox(
-              height: 108,
+              height: 68,
             ),
           ],
         ),
       ),
+      bottomNavigationBar: _navigationBar(_selectIndex, _onItemSelected),
       floatingActionButton: FloatingActionButton(
         onPressed: _changeTheme,
         tooltip: 'change theme',
@@ -148,6 +150,34 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               GlobalService.to.isDarkMode ? Icons.light_mode : Icons.dark_mode),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget _navigationBar(int selectIndex, Function(int) onItemSelect) {
+    return BottomNavigationBar(
+      elevation: 8,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "首页",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.public),
+          label: "广场",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.star),
+          label: "项目",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: "我的",
+        ),
+      ],
+      currentIndex: selectIndex,
+      onTap: onItemSelect,
     );
   }
 }

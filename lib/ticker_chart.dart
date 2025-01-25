@@ -21,6 +21,7 @@ class TickerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: const Text('Ticker Chart'),
       ),
       body: TickerChart(),
@@ -55,6 +56,7 @@ class TickerChart extends StatelessWidget {
       itemBuilder: (context, index) {
         final ticker = _tickers[index];
         return Card(
+          color: Theme.of(context).colorScheme.tertiaryContainer,
           margin: const EdgeInsets.symmetric(vertical: 4),
           elevation: 2,
           child: Padding(
