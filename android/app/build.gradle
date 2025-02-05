@@ -5,6 +5,13 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+println('gradle.gradleversion: ' + gradle.gradleVersion)
+println('android.buildToolsVersion: ' + android.buildToolsVersion)
+println('flutter.compileSdkVersion: ' + flutter.compileSdkVersion)
+println('flutter.targetSdkVersion: ' + flutter.targetSdkVersion)
+println('flutter.minSdkVersion: ' + flutter.minSdkVersion)
+println('flutter.ndkVersion: ' + flutter.ndkVersion)
+
 android {
     namespace = "com.example.flutter_workshop"
     compileSdk = flutter.compileSdkVersion

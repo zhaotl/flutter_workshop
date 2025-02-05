@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_workshop/flip_image.dart';
 import 'package:flutter_workshop/flipping_switch.dart';
 import 'package:flutter_workshop/global.dart';
+import 'package:flutter_workshop/overlay/overlay_view.dart';
 import 'package:flutter_workshop/theme.dart';
 import 'package:flutter_workshop/ticker_chart.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalService.to.isDarkMode ? AppTheme.dark : AppTheme.light,
       routes: {
         '/ticker': (context) => const TickerPage(),
+        '/overlay': (context) => const OverlayView(),
       },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
