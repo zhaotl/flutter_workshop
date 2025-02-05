@@ -21,17 +21,12 @@ class _OverlayViewState extends State<OverlayView> {
 
   @override
   void dispose() {
-    _overlayState?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        title: const Text('Overlay View'),
-      ),
       body: const Center(
         child: Text('Overlay View'),
       ),
@@ -45,7 +40,7 @@ class _OverlayViewState extends State<OverlayView> {
 
     final screenWidth = MediaQuery.of(context).size.width;
     final randomHeight =
-        MediaQuery.of(context).size.height * Random().nextDouble();
+        (MediaQuery.of(context).size.height - 168) * Random().nextDouble();
 
     OverlayEntry? overlayEnry;
     overlayEnry = OverlayEntry(

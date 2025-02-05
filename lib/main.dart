@@ -92,66 +92,85 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            FlippingSwitch(
-              color: Theme.of(context).primaryColor, // Color(0xFF333333),
-              leftLabel: 'Flower',
-              rightLabel: 'Cake',
-              background: Theme.of(context).colorScheme.primaryContainer,
-              onChange: (isLeftActive) {
-                changeAssetPath(isLeftActive);
-              },
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-              child: MyFlipImage(assetPath: _assetPath),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton.filled(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      Theme.of(context).colorScheme.primaryContainer,
-                    ),
-                    shape: WidgetStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+      body: _builldPage(_selectIndex),
+      bottomNavigationBar: _navigationBar(_selectIndex, _onItemSelected),
+      floatingActionButton: _selectIndex == 0
+          ? FloatingActionButton(
+              onPressed: _changeTheme,
+              tooltip: 'change theme',
+              child: Obx(
+                () => Icon(GlobalService.to.isDarkMode
+                    ? Icons.light_mode
+                    : Icons.dark_mode),
+              ),
+            )
+          : null, // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget? _builldPage(int selectIndex) {
+    switch (selectIndex) {
+      case 0:
+        return _buildFlipImage();
+      case 1:
+        return OverlayView();
+      case 2:
+        return Text("项目");
+      case 3:
+        return Text("我的");
+      default:
+        return null;
+    }
+  }
+
+  Widget _buildFlipImage() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          FlippingSwitch(
+            color: Theme.of(context).primaryColor, // Color(0xFF333333),
+            leftLabel: 'Flower',
+            rightLabel: 'Cake',
+            background: Theme.of(context).colorScheme.primaryContainer,
+            onChange: (isLeftActive) {
+              changeAssetPath(isLeftActive);
+            },
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            child: MyFlipImage(assetPath: _assetPath),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0, bottom: 68),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: IconButton.filled(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(
+                    Theme.of(context).colorScheme.primaryContainer,
+                  ),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  color: Theme.of(context).colorScheme.secondary,
-                  padding: const EdgeInsets.all(16),
-                  onPressed: _gotoNextPage,
-                  icon: Icon(Icons.arrow_forward),
                 ),
+                color: Theme.of(context).colorScheme.secondary,
+                padding: const EdgeInsets.all(16),
+                onPressed: _gotoNextPage,
+                icon: Icon(Icons.arrow_forward),
               ),
             ),
-            SizedBox(
-              height: 68,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      bottomNavigationBar: _navigationBar(_selectIndex, _onItemSelected),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _changeTheme,
-        tooltip: 'change theme',
-        child: Obx(
-          () => Icon(
-              GlobalService.to.isDarkMode ? Icons.light_mode : Icons.dark_mode),
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
